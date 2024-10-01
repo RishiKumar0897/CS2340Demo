@@ -1,0 +1,98 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    tools:context=".view.MainActivity" >
+
+    <!-- Declare a <data> block with a <variable> in xml file to hold viewmodel -->
+    <data>
+        <variable
+            name="viewModel"
+            type="com.example.rishi_2340_demo.viewmodel.MainViewModel" />
+    </data>
+
+
+<androidx.constraintlayout.widget.ConstraintLayout
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+    <!-- Initial message which is now being reflected using the viewmodel -->
+    <TextView
+        android:id="@+id/text_hello_world"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@{viewModel.greetingMessage}"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <!-- New button that updates the above message using viewModel's updateMessage() -->
+    <Button
+        android:id="@+id/button_update_message"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Update Message"
+        android:onClick="@{() -> viewModel.updateMessage()}"
+        app:layout_constraintBottom_toTopOf="@+id/button_update_message"
+        app:layout_constraintTop_toBottomOf="@id/text_hello_world"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        tools:ignore="NotSibling" />
+
+    <!-- Initial button that navigated to second activity -->
+    <Button
+        android:id="@+id/text_button_open"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Open Activity"
+        app:layout_constraintTop_toBottomOf="@id/button_update_message"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent" />
+
+    <!-- Displays counter value -->
+    <TextView
+        android:id="@+id/text_counter_value"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@{String.valueOf(viewModel.counter)}"
+        app:layout_constraintTop_toBottomOf="@id/text_button_open"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"/>
+
+
+    <!-- Button to increment the counter -->
+    <Button
+        android:id="@+id/increment_counter_button"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Increment Counter"
+        android:onClick="@{() -> viewModel.incrementCounter()}"
+        app:layout_constraintTop_toBottomOf="@id/text_counter_value"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent" />
+
+
+    <Button
+        android:id="@+id/increment_countergraph"
+        android:layout_width="150dp"
+        android:layout_height="50dp"
+        android:layout_marginTop="5dp"
+        android:text="Create Graph"
+        app:layout_constraintTop_toBottomOf="@id/increment_counter_button"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent" />
+
+    
+    <com.github.mikephil.charting.charts.BarChart
+        android:id="@+id/barChart"
+        android:layout_width="300dp"
+        android:layout_height="400dp"
+        android:layout_marginTop="50dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/increment_countergraph" />
+
+
+
+</androidx.constraintlayout.widget.ConstraintLayout>
+</layout>
